@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>熟悉 Bash 快捷键拉提高效率</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../static/css/blog.css" th:href="@{/css/blog.css}"/>
+    <link rel="stylesheet" href="../static/css/hightlight.css" th:href="@{/css/highlight.css}"/>
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Taotao's Blog</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="/posts/create">Post</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="page-header">
+        <h2 th:text="${post.title}">熟悉 Bash 快捷键拉提高效率</h2>
+
+        <p class="blog-post-meta" th:text="${#dates.format(post.created, 'yyyy-MM-dd')}">2015-11-09</p>
+    </div>
+    <div class="blog-post-content" th:text="${post.content}">
+        <p><a href="http://www.gnu.org/software/bash/">Bash</a> is ......</p>
+
+        <h1 id="0">命令编辑</h1>
+
+        <table class="table table-bordered table-striped">
+            <thread>
+                <tr>
+                    <th>快捷键</th>
+                    <th>描述</th>
+                </tr>
+            </thread>
+        </table>
+    </div>
+</div>
+</body>
+</html>

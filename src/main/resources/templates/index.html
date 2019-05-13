@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>博客首页</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../static/css/blog.css" th:href="@{/css/blog.css}"/>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Taotao's Blog</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="/posts/create">Post</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="page-header">
+        <h1>Taotao's Blog
+            <small>Keep It Sample!</small>
+        </h1>
+    </div>
+
+    <div class="blog-post" th:each="post : ${posts}">
+        <h3 class="blog-post-title">
+            <a href="./item.html" th:text="${post.title}"
+                th:href="@{'/posts/' + ${post.id}}">熟悉 Bash 快捷键来提高效率</a></h3>
+        <p class="blog-post-meta" th:text="${#dates.format(post.created, 'yyyy-MM-dd')}">2015-11-09</p>
+        <p class="blog-post-content" th:text="${post.content}">
+            bash是GNU计划的一个部分，是大多数Linux 发行版提供的默认Shell。
+        </p>
+    </div>
+
+    <div class="blog-post" th:remove="all">
+        <h3 class="blog-post-title"><a href="./item.html">Vel volutpat dictim sagittis lacus</a></h3>
+        <p class="blog-post-meta">2015-10-11</p>
+        <p class="blog-post-content">balabalabala...</p>
+    </div>
+
+    <div class="blog-post" th:remove="all">
+        <h3 class="blog-post-title"><a href="./item.html">something</a></h3>
+        <p class="blog-post-meta">2015-10-10</p>
+        <p class="blog-post-content">balabalabalabalabala...</p>
+    </div>
+
+</div>
+</body>
+</html>
