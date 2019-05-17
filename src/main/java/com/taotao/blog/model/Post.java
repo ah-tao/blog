@@ -3,6 +3,9 @@ package com.taotao.blog.model;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * @author Taotao Ma
+ */
 @Entity
 public class Post {
 
@@ -17,9 +20,7 @@ public class Post {
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
 
-    public Post() {
-
-    }
+    public Post() {}
 
     public Post(String title, String content) {
         this.title = title;
@@ -29,10 +30,6 @@ public class Post {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getTitle() {
