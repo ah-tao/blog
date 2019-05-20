@@ -12,20 +12,23 @@
     <!-- nav -->
     <nav class="ui attached segment m-padded-tb-min">
         <div class="ui container">
-            <div class="ui secondary menu">
+            <div class="ui secondary stackable menu">
                 <h2 class="ui header item">Blog</h2>
-                <a href="#" class="item m-mobile-hide">Home</a>
-                <a href="#" class="item m-mobile-hide">Topic</a>
-                <a href="#" class="item m-mobile-hide">Tag</a>
-                <a href="#" class="item m-mobile-hide">Timeline</a>
-                <a href="#" class="item m-mobile-hide">About</a>
-                <div class="right item m-mobile-hide">
+                <a href="#" class="item menu-item m-mobile-hide">Home</a>
+                <a href="#" class="item menu-item m-mobile-hide">Topic</a>
+                <a href="#" class="item menu-item m-mobile-hide">Tag</a>
+                <a href="#" class="item menu-item m-mobile-hide">Timeline</a>
+                <a href="#" class="item menu-item m-mobile-hide">About</a>
+                <div class="right item menu-item m-mobile-hide">
                     <div class="ui icon input">
-                            <input type="text" placeholder="Search...">
+                        <input type="text" placeholder="Search...">
                         <i class="search link icon"></i>
                     </div>
                 </div>
             </div>
+            <a class="ui icon basic button menu toggle m-position-right-top m-mobile-show m-margin-lr-m" href="#">
+                <i class="sidebar icon"></i>
+            </a>
         </div>
     </nav>
 
@@ -209,8 +212,16 @@
         </div>
     </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+    <!-- Script -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+    <script>
+        $('.menu.toggle').click(function () {
+            $('.menu-item').toggleClass('m-mobile-hide');
+        })
+    </script>
 
 </body>
 </html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/mstyle.css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+    <!-- nav -->
+    <nav class="ui attached segment m-padded-tb-min">
+        <div class="ui container">
+            <div class="ui secondary stackable menu">
+                <h2 class="ui header item">Blog</h2>
+                <a href="#" class="item menu-item m-mobile-hide">Home</a>
+                <a href="#" class="item active menu-item m-mobile-hide">Topic</a>
+                <a href="#" class="item menu-item m-mobile-hide">Tag</a>
+                <a href="#" class="item menu-item m-mobile-hide">Timeline</a>
+                <a href="#" class="item menu-item m-mobile-hide">About</a>
+                <div class="right item menu-item m-mobile-hide">
+                    <div class="ui icon input">
+                        <input type="text" placeholder="Search...">
+                        <i class="search link icon"></i>
+                    </div>
+                </div>
+            </div>
+            <a class="ui icon basic button menu toggle m-position-right-top m-mobile-show m-margin-lr-m" href="#">
+                <i class="sidebar icon"></i>
+            </a>
+        </div>
+    </nav>
+
+
+    <!-- main content -->
+    <div class="m-padded-tb-l m-container">
+        <div class="ui container">
+            <!-- Top --->
+            <div class="ui top attached segment">
+                <div class="ui middle aligned two column grid">
+                    <div class="column">
+                        <h3 class="ui header">Topic</h3>
+                    </div>
+                    <div class="right aligned column">
+                        Total <h3 class="ui header m-inline-block m-text-thin"> 14 </h3>
+                    </div>
+                </div>
+            </div>
+            <!-- Topic -->
+            <div class="ui bottom attached segment">
+                <div class="ui labeled button m-margin-tb-xs">
+                    <a href="#" class="ui button">Java</a>
+                    <div class="ui  basic left pointing label">12</div>
+                </div>
+                <div class="ui labeled button m-margin-tb-xs">
+                    <a href="#" class="ui basic button">Python</a>
+                    <div class="ui basic left pointing label">15</div>
+                </div>
+                <div class="ui labeled button m-margin-tb-xs">
+                    <a href="#" class="ui basic button">Life</a>
+                    <div class="ui basic left pointing label">16</div>
+                </div>
+                <div class="ui labeled button m-margin-tb-xs">
+                    <a href="#" class="ui basic button">C/C++</a>
+                    <div class="ui basic left pointing label">18</div>
+                </div>
+                <div class="ui labeled button m-margin-tb-xs">
+                    <a href="#" class="ui basic button">System</a>
+                    <div class="ui basic left pointing label">11</div>
+                </div>
+                <div class="ui labeled button m-margin-tb-xs">
+                    <a href="#" class="ui basic button">Machine Learning</a>
+                    <div class="ui basic left pointing label">10</div>
+                </div>
+                <div class="ui labeled button m-margin-tb-xs">
+                    <a href="#" class="ui basic button">Web</a>
+                    <div class="ui basic left pointing label">15</div>
+                </div>
+            </div>
+            <!-- list of posts in a topic -->
+            <div class="ui top attached segment m-padded-tb-m m-padded-lr-responsive">
+                <div class="ui vertical segment m-padded-tb-m m-padded-lr-m">
+                    <h3 class="ui header">This is the title</h3>
+                    <p class="">This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content</p>
+                    <div class="ui grid">
+                        <div class="eleven wide column">
+                            <div class="ui horizontal link list">
+                                <div class="item">
+                                    <img src="https://via.placeholder.com/100" alt="" class="ui avatar image">
+                                    <div class="content"><a href="#" class="header">Ah-tao</a></div>
+                                </div>
+                                <div class="item">
+                                    <i class="calendar icon"></i> Sept 7 2019
+                                </div>
+                            </div>
+                        </div>
+                        <div class="five wide column right aligned">
+                            <a href="#" target="_blank" class="ui basic label m-padded-tb-xs">Java</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui vertical segment m-padded-tb-m m-padded-lr-m">
+                    <h3 class="ui header">This is the title</h3>
+                    <p class="">This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content</p>
+                    <div class="ui grid">
+                        <div class="eleven wide column">
+                            <div class="ui horizontal link list">
+                                <div class="item">
+                                    <img src="https://via.placeholder.com/100" alt="" class="ui avatar image">
+                                    <div class="content"><a href="#" class="header">Ah-tao</a></div>
+                                </div>
+                                <div class="item">
+                                    <i class="calendar icon"></i> Sept 7 2019
+                                </div>
+                            </div>
+                        </div>
+                        <div class="five wide column right aligned">
+                            <a href="#" target="_blank" class="ui basic label m-padded-tb-xs">Java</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui vertical segment m-padded-tb-m m-padded-lr-m">
+                    <h3 class="ui header">This is the title</h3>
+                    <p class="">This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content</p>
+                    <div class="ui grid">
+                        <div class="eleven wide column">
+                            <div class="ui horizontal link list">
+                                <div class="item">
+                                    <img src="https://via.placeholder.com/100" alt="" class="ui avatar image">
+                                    <div class="content"><a href="#" class="header">Ah-tao</a></div>
+                                </div>
+                                <div class="item">
+                                    <i class="calendar icon"></i> Sept 7 2019
+                                </div>
+                            </div>
+                        </div>
+                        <div class="five wide column right aligned">
+                            <a href="#" target="_blank" class="ui basic label m-padded-tb-xs">Java</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui vertical segment m-padded-tb-m m-padded-lr-m">
+                    <h3 class="ui header">This is the title</h3>
+                    <p class="">This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content</p>
+                    <div class="ui grid">
+                        <div class="eleven wide column">
+                            <div class="ui horizontal link list">
+                                <div class="item">
+                                    <img src="https://via.placeholder.com/100" alt="" class="ui avatar image">
+                                    <div class="content"><a href="#" class="header">Ah-tao</a></div>
+                                </div>
+                                <div class="item">
+                                    <i class="calendar icon"></i> Sept 7 2019
+                                </div>
+                            </div>
+                        </div>
+                        <div class="five wide column right aligned">
+                            <a href="#" target="_blank" class="ui basic label m-padded-tb-xs">Java</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui vertical segment m-padded-tb-m m-padded-lr-m">
+                    <h3 class="ui header">This is the title</h3>
+                    <p class="">This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content</p>
+                    <div class="ui grid">
+                        <div class="eleven wide column">
+                            <div class="ui horizontal link list">
+                                <div class="item">
+                                    <img src="https://via.placeholder.com/100" alt="" class="ui avatar image">
+                                    <div class="content"><a href="#" class="header">Ah-tao</a></div>
+                                </div>
+                                <div class="item">
+                                    <i class="calendar icon"></i> Sept 7 2019
+                                </div>
+                            </div>
+                        </div>
+                        <div class="five wide column right aligned">
+                            <a href="#" target="_blank" class="ui basic label m-padded-tb-xs">Java</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui vertical segment m-padded-tb-m m-padded-lr-m">
+                    <h3 class="ui header">This is the title</h3>
+                    <p class="">This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content</p>
+                    <div class="ui grid">
+                        <div class="eleven wide column">
+                            <div class="ui horizontal link list">
+                                <div class="item">
+                                    <img src="https://via.placeholder.com/100" alt="" class="ui avatar image">
+                                    <div class="content"><a href="#" class="header">Ah-tao</a></div>
+                                </div>
+                                <div class="item">
+                                    <i class="calendar icon"></i> Sept 7 2019
+                                </div>
+                            </div>
+                        </div>
+                        <div class="five wide column right aligned">
+                            <a href="#" target="_blank" class="ui basic label m-padded-tb-xs">Java</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Bottom -->
+            <div class="ui bottom attached segment">
+                <div class="ui middle aligned two column grid">
+                    <div class="column">
+                        <a href="#" class="ui button">Prev</a>
+                    </div>
+                    <div class="right aligned column">
+                        <a href="#" class="ui button">Next</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <!-- footer -->
+    <footer class="ui vertical segment m-padded-tb-m">
+        <div class="ui center aligned container">
+            <div class="ui section divider"></div>
+            <div class="ui divided stackable grid">
+                <div class="eight wide column">
+                    <h4 class="ui header">What's up</h4>
+                    <p class="m-text-thin  m-opacity-min">balabalabala.....</p>
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui header">What's new</h4>
+                    <div class="ui link list">
+                        <a href="#" class="item">Something</a>
+                        <a href="#" class="item">Something</a>
+                        <a href="#" class="item">Something</a>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui header">What's else</h4>
+                    <div class="ui link list">
+                        <a href="#" class="item">Something</a>
+                        <a href="#" class="item">Something</a>
+                        <a href="#" class="item">Something</a>
+                    </div>
+                </div>
+            </div>
+            <div class="ui section divider"></div>
+            <p class="m-text-thin m-text-spaced m-opacity">Copyright &copy 2019 Designed by Taotao Ma</p>
+
+        </div>
+    </footer>
+
+
+    <!-- Script -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+    <script>
+        $('.menu.toggle').click(function () {
+            $('.menu-item').toggleClass('m-mobile-hide');
+        })
+    </script>
+
+</body>
+</html>

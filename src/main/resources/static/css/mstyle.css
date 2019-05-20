@@ -62,6 +62,10 @@
     margin-bottom: 0.5em !important;
 }
 
+.m-margin-t-xs {
+    margin-top: 0.5em !important;
+}
+
 .m-margin-b-xs {
     margin-bottom: 0.5em !important;
 }
@@ -116,6 +120,7 @@
 }
 
 
+/*------------Opacity ------------*/
 .m-opacity-min {
     opacity: 0.8 !important;
 }
@@ -129,8 +134,6 @@
 }
 
 
-
-
 /*---------Display -------------*/
 .m-inline-block {
     display: inline-block !important;
@@ -138,6 +141,11 @@
 
 .m-color-gray {
     color: #777777;
+}
+
+.m-shadow-small {
+    -webkit-box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
 }
 
 .m-container {
@@ -148,6 +156,14 @@
 .m-container-s {
     max-width: 60em !important;
     margin: auto !important;
+}
+
+
+/*-----------Position ------------*/
+.m-position-right-top {
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 
