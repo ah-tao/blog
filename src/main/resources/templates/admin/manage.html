@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/mstyle.css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+    <!-- nav -->
+    <nav class="ui attached segment m-padded-tb-min">
+        <div class="ui container">
+            <div class="ui secondary stackable menu">
+                <h2 class="ui header item">Blog</h2>
+                <a href="#" class="item menu-item m-mobile-hide">Home</a>
+                <a href="#" class="item menu-item m-mobile-hide">Topic</a>
+                <a href="#" class="item menu-item m-mobile-hide">Tag</a>
+                <div class="right menu menu-item m-mobile-hide">
+                    <div class="ui dropdown item">
+                        <div class="text">
+                            <img src="https://via.placeholder.com/100" alt="" class="ui avatar image">
+                            Ah-tao
+                            <i class="dropdown icon"></i>
+                        </div>
+
+                        <div class="menu">
+                            <a class="item" href="#">log out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="ui icon basic button menu toggle m-position-right-top m-mobile-show m-margin-lr-m" href="#">
+                <i class="sidebar icon"></i>
+            </a>
+        </div>
+    </nav>
+    <div class="ui attached pointing menu">
+        <div class="ui container">
+            <div class="right menu">
+                <a href="#" class="item">Post</a>
+                <a href="#" class="active item">Manage</a>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- main content -->
+    <div class="m-padded-tb-l m-container">
+        <div class="ui container">
+            <form action="#" method="post" class="ui segment form">
+                <div class="inline fields">
+                    <div class="field">
+                        <input type="text" name="title" placeholder="Search...">
+                    </div>
+                    <div class="field">
+                        <div class="ui selection dropdown">
+                            <input type="hidden" name="topic">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Any topics</div>
+                            <div class="menu">
+                                <div class="item" data-value="1">Java</div>
+                                <div class="item" data-value="2">Python</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <button class="ui button">Go</button>
+                    </div>
+                </div>
+            </form>
+
+            <table class="ui celled padded table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Topic</th>
+                        <th>Update</th>
+                        <th>Manage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>This is the title</td>
+                        <td>Java</td>
+                        <td>Sep 07 2019 10:10PM</td>
+                        <td>
+                            <a class="ui mini basic button">Edit</a>
+                            <a class="ui mini red basic button">Delete</a>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>This is the title</td>
+                        <td>Java</td>
+                        <td>Sep 07 2019 10:10PM</td>
+                        <td>
+                            <a class="ui mini basic button">Edit</a>
+                            <a class="ui mini red basic button">Delete</a>
+
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="4">
+                            <a href="#" class="ui basic button">Create</a>
+                            <div class="ui right floated pagination mini menu">
+                                <a class="icon item">
+                                    <i class="left chevron icon"></i>
+                                </a>
+                                <a class="icon item">
+                                    <i class="right chevron icon"></i>
+                                </a>
+                            </div>
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+
+    <!-- footer -->
+    <footer class="ui vertical segment m-padded-tb-m">
+        <div class="ui center aligned container">
+            <div class="ui section divider"></div>
+            <p class="m-text-thin m-text-spaced m-opacity">Copyright &copy 2019 Designed by Taotao Ma</p>
+        </div>
+    </footer>
+
+
+    <!-- Script -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+    <script>
+        $('.menu.toggle').click(function () {
+            $('.menu-item').toggleClass('m-mobile-hide');
+        })
+
+        $('.ui.dropdown').dropdown({
+            on: 'hover'
+        })
+    </script>
+
+</body>
+</html>
