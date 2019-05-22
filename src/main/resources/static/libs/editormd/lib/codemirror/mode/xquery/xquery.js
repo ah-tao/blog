@@ -181,7 +181,7 @@ CodeMirror.defineMode("xquery", function() {
       // gobble up a word if the character is not known
       if(!known) stream.eatWhile(/[\w\$_-]/);
 
-      // gobble a colon in the case that is a lib func type call fn:doc
+      // gobble a colon in the case that is a libs func type call fn:doc
       var foundColon = stream.eat(":");
 
       // if there's not a second colon, gobble another word. Otherwise, it's probably an axis specifier
