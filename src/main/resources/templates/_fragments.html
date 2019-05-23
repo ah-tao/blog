@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:replace="${title}">Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/mstyle.css" th:href="@{/css/mstyle.css}">
+    <link rel="stylesheet" href="../static/libs/tocbot/tocbot.css" th:href="@{/libs/tocbot/tocbot.css}">
+</head>
+<body>
+
+<!-- nav -->
+<nav th:fragment="nav(n)" class="ui attached segment m-padded-tb-min">
+    <div class="ui container">
+        <div class="ui secondary stackable menu">
+            <h2 class="ui header item">Blog</h2>
+            <a href="#" class="item menu-item m-mobile-hide" th:classappend="${n==1} ? 'active'">Home</a>
+            <a href="#" class="item menu-item m-mobile-hide" th:classappend="${n==2} ? 'active'">Topic</a>
+            <a href="#" class="item menu-item m-mobile-hide" th:classappend="${n==3} ? 'active'">Tag</a>
+            <a href="#" class="item menu-item m-mobile-hide" th:classappend="${n==4} ? 'active'">Timeline</a>
+            <a href="#" class="item menu-item m-mobile-hide" th:classappend="${n==5} ? 'active'">About</a>
+            <div class="right item menu-item m-mobile-hide">
+                <div class="ui icon input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+        </div>
+        <a class="ui icon basic button menu toggle m-position-right-top m-mobile-show m-margin-lr-m" href="#">
+            <i class="sidebar icon"></i>
+        </a>
+    </div>
+</nav>
+
+<!-- footer -->
+<footer th:fragment="footer" class="ui vertical segment m-padded-tb-m">
+    <div class="ui center aligned container">
+        <div class="ui section divider"></div>
+        <div class="ui divided stackable grid">
+            <div class="eight wide column">
+                <h4 class="ui header">What's up</h4>
+                <p class="m-text-thin  m-opacity-min">balabalabala.....</p>
+            </div>
+            <div class="four wide column">
+                <h4 class="ui header">What's new</h4>
+                <div class="ui link list">
+                    <a href="#" class="item">Something</a>
+                    <a href="#" class="item">Something</a>
+                    <a href="#" class="item">Something</a>
+                </div>
+            </div>
+            <div class="four wide column">
+                <h4 class="ui header">What's else</h4>
+                <div class="ui link list">
+                    <a href="#" class="item">Something</a>
+                    <a href="#" class="item">Something</a>
+                    <a href="#" class="item">Something</a>
+                </div>
+            </div>
+        </div>
+        <div class="ui section divider"></div>
+        <p class="m-text-thin m-text-spaced m-opacity">Copyright &copy 2019 Designed by Taotao Ma</p>
+
+    </div>
+</footer>
+
+</body>
+</html>

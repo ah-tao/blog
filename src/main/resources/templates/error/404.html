@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/mstyle.css">
+</head>
+<body>
+<!-- nav -->
+<nav th:replace="_fragments :: nav(0)" class="ui attached segment m-padded-tb-min">
+    <div class="ui container">
+        <div class="ui secondary stackable menu">
+            <h2 class="ui header item">Blog</h2>
+            <a href="#" class="item active menu-item m-mobile-hide">Home</a>
+            <a href="#" class="item menu-item m-mobile-hide">Topic</a>
+            <a href="#" class="item menu-item m-mobile-hide">Tag</a>
+            <a href="#" class="item menu-item m-mobile-hide">Timeline</a>
+            <a href="#" class="item menu-item m-mobile-hide">About</a>
+            <div class="right item menu-item m-mobile-hide">
+                <div class="ui icon input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+        </div>
+        <a class="ui icon basic button menu toggle m-position-right-top m-mobile-show m-margin-lr-m" href="#">
+            <i class="sidebar icon"></i>
+        </a>
+    </div>
+</nav>
+
+<br>
+<br>
+<br>
+
+<div class="m-container-s m-padded-tb-xl">
+    <div class="ui error message m-padded-tb-l" >
+        <div class="ui container">
+            <h2>404</h2>
+            <p>Sorry, page not found...</p>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+
+<div>
+    <div th:utext="'&lt;!--'" th:remove="tag"></div>
+    <div th:utext="'Failed Request URL : ' + ${url}" th:remove="tag"></div>
+    <div th:utext="'Exception message : ' + ${exception.message}" th:remove="tag"></div>
+    <ul th:remove="tag">
+        <li th:each="st : ${exception.stackTrace}" th:remove="tag"><span th:utext="${st}" th:remove="tag"></span></li>
+    </ul>
+    <div th:utext="'--&gt;'" th:remove="tag"></div>
+</div>
+
+<!-- footer -->
+<footer th:replace="_fragments :: footer" class="ui vertical segment m-padded-tb-m">
+    <div class="ui center aligned container">
+        <div class="ui section divider"></div>
+        <div class="ui divided stackable grid">
+            <div class="eight wide column">
+                <h4 class="ui header">What's up</h4>
+                <p class="m-text-thin  m-opacity-min">balabalabala.....</p>
+            </div>
+            <div class="four wide column">
+                <h4 class="ui header">What's new</h4>
+                <div class="ui link list">
+                    <a href="#" class="item">Something</a>
+                    <a href="#" class="item">Something</a>
+                    <a href="#" class="item">Something</a>
+                </div>
+            </div>
+            <div class="four wide column">
+                <h4 class="ui header">What's else</h4>
+                <div class="ui link list">
+                    <a href="#" class="item">Something</a>
+                    <a href="#" class="item">Something</a>
+                    <a href="#" class="item">Something</a>
+                </div>
+            </div>
+        </div>
+        <div class="ui section divider"></div>
+        <p class="m-text-thin m-text-spaced m-opacity">Copyright &copy 2019 Designed by Taotao Ma</p>
+
+    </div>
+</footer>
+
+<!-- Script -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+<script>
+    $('.menu.toggle').click(function () {
+        $('.menu-item').toggleClass('m-mobile-hide');
+    })
+</script>
+
+
+</body>
+</html>
