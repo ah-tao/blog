@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
+<head th:replace="admin/_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-    <link rel="stylesheet" href="../../static/css/mstyle.css" th:href="@{/css/mstyle.css}">
+    <link rel="stylesheet" href="../../static/css/mstyle.css">
 </head>
 <body>
 
     <!-- nav -->
-    <nav class="ui attached segment m-padded-tb-min">
+    <nav th:replace="admin/_fragments :: nav" class="ui attached segment m-padded-tb-min">
         <div class="ui container">
             <div class="ui secondary stackable menu">
                 <h2 class="ui header item">Blog</h2>
@@ -20,7 +20,7 @@
                 <div class="right menu menu-item m-mobile-hide">
                     <div class="ui dropdown item">
                         <div class="text">
-                            <img src="../../static/images/Tao.jpg" th:src="@{/images/Tao.jpg}" alt="" class="ui avatar image">
+                            <img src="../../static/images/Tao.jpg" alt="" class="ui avatar image">
                             Ah-tao
                             <i class="dropdown icon"></i>
                         </div>
@@ -139,11 +139,11 @@
     <script>
         $('.menu.toggle').click(function () {
             $('.menu-item').toggleClass('m-mobile-hide');
-        })
+        });
 
         $('.ui.dropdown').dropdown({
             on: 'hover'
-        })
+        });
     </script>
 
 </body>
