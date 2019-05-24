@@ -10,11 +10,11 @@
 <body>
 
 <!-- nav -->
-<nav th:replace="admin/_fragments :: nav" class="ui attached segment m-padded-tb-min">
+<nav th:replace="admin/_fragments :: nav(0)" class="ui attached segment m-padded-tb-min">
     <div class="ui container">
         <div class="ui secondary stackable menu">
             <h2 class="ui header item">Blog</h2>
-            <a href="#" class="item menu-item m-mobile-hide">Home</a>
+            <a href="#" class="item menu-item m-mobile-hide">Post</a>
             <a href="#" class="item menu-item m-mobile-hide">Topic</a>
             <a href="#" class="item menu-item m-mobile-hide">Tag</a>
             <div class="right menu menu-item m-mobile-hide">
@@ -36,15 +36,6 @@
         </a>
     </div>
 </nav>
-<div class="ui attached pointing menu">
-    <div class="ui container">
-        <div class="right menu">
-            <a href="#" class="item">Post</a>
-            <a href="#" class="item">Manage</a>
-        </div>
-    </div>
-
-</div>
 
 
 <!-- main content -->
@@ -52,8 +43,8 @@
 <div class="m-padded-tb-xl m-container-s">
     <div class="ui container">
         <div class="ui success large message">
-            <h2>Hi,</h2>
-            <p>Welcome back!</p>
+            <h2>Welcome back!</h2>
+            <p>I am always here for you.</p>
         </div>
     </div>
 </div>

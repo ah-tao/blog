@@ -13,7 +13,7 @@
     <div class="ui container">
         <div class="ui secondary stackable menu">
             <h2 class="ui header item">Blog</h2>
-            <a href="#" class="item active menu-item m-mobile-hide">Home</a>
+            <a href="#" class="item menu-item m-mobile-hide">Home</a>
             <a href="#" class="item menu-item m-mobile-hide">Topic</a>
             <a href="#" class="item menu-item m-mobile-hide">Tag</a>
             <a href="#" class="item menu-item m-mobile-hide">Timeline</a>
@@ -47,16 +47,6 @@
 <br>
 <br>
 <br>
-
-<div>
-    <div th:utext="'&lt;!--'" th:remove="tag"></div>
-    <div th:utext="'Failed Request URL : ' + ${url}" th:remove="tag"></div>
-    <div th:utext="'Exception message : ' + ${exception.message}" th:remove="tag"></div>
-    <ul th:remove="tag">
-        <li th:each="st : ${exception.stackTrace}" th:remove="tag"><span th:utext="${st}" th:remove="tag"></span></li>
-    </ul>
-    <div th:utext="'--&gt;'" th:remove="tag"></div>
-</div>
 
 <!-- footer -->
 <footer th:replace="_fragments :: footer" class="ui vertical segment m-padded-tb-m">

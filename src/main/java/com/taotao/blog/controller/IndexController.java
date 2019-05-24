@@ -21,21 +21,21 @@ public class IndexController {
         return "index";
     }
 
-    @RequestMapping(value = "/post", method = GET)
+    @RequestMapping(value = "/posts", method = GET)
     public String postPage() {
-        return "post";
+        return "posts";
     }
 
 
-    @RequestMapping(value = "/topic", method = GET)
+    @RequestMapping(value = "/topics", method = GET)
     public String topicPage() {
-        return "topic";
+        return "topics";
     }
 
 
-    @RequestMapping(value = "/tag", method = GET)
+    @RequestMapping(value = "/tags", method = GET)
     public String tagPage() {
-        return "tag";
+        return "tags";
     }
 
     @RequestMapping(value = "/about", method = GET)

@@ -22,7 +22,7 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    @GetMapping
+    @GetMapping(value = {"", "/login"})
     public String loginPage() {
         return "admin/login";
     }

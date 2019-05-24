@@ -3,18 +3,18 @@
 <head th:replace="admin/_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage</title>
+    <title>Post List</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../../static/css/mstyle.css">
 </head>
 <body>
 
     <!-- nav -->
-    <nav th:replace="admin/_fragments :: nav" class="ui attached segment m-padded-tb-min">
+    <nav th:replace="admin/_fragments :: nav(1)" class="ui attached segment m-padded-tb-min">
         <div class="ui container">
             <div class="ui secondary stackable menu">
                 <h2 class="ui header item">Blog</h2>
-                <a href="#" class="item menu-item m-mobile-hide">Home</a>
+                <a href="#" class="item menu-item m-mobile-hide">Post</a>
                 <a href="#" class="item menu-item m-mobile-hide">Topic</a>
                 <a href="#" class="item menu-item m-mobile-hide">Tag</a>
                 <div class="right menu menu-item m-mobile-hide">
@@ -39,8 +39,8 @@
     <div class="ui attached pointing menu">
         <div class="ui container">
             <div class="right menu">
-                <a href="#" class="item">Post</a>
-                <a href="#" class="active item">Manage</a>
+                <a href="#" class="item">Edit</a>
+                <a href="#" class="active item">List</a>
             </div>
         </div>
 
