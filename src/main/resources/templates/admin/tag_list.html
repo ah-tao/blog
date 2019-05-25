@@ -3,14 +3,14 @@
 <head th:replace="admin/_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post Manage</title>
+    <title>Tag Manage</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../../static/css/mstyle.css">
 </head>
 <body>
 
     <!-- nav -->
-    <nav th:replace="admin/_fragments :: nav(1)" class="ui attached segment m-padded-tb-min">
+    <nav th:replace="admin/_fragments :: nav(3)" class="ui attached segment m-padded-tb-min">
         <div class="ui container">
             <div class="ui secondary stackable menu">
                 <h2 class="ui header item">Blog</h2>
@@ -39,90 +39,51 @@
     <div class="ui attached pointing menu">
         <div class="ui container">
             <div class="right menu">
-                <a href="#" th:href="@{/admin/posts/create}" class="item">Create/Edit</a>
-                <a href="#" th:href="@{/admin/posts}" class="active item">List</a>
+                <a href="#" th:href="@{/admin/tags/create}" class="item">Create/Edit</a>
+                <a href="#" th:href="@{/admin/tags}" class="active item">List</a>
             </div>
         </div>
-
     </div>
 
 
     <!-- main content -->
     <div class="m-padded-tb-l m-container">
         <div class="ui container">
-            <!-- success message-->
+            <!-- success message for add/edit tag -->
             <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
                 <i class="close icon"></i>
                 <div class="header">Hint: </div>
-                <p th:text="${message}">Post add/update successful!</p>
+                <p th:text="${message}">Topic add/update successful!</p>
             </div>
 
-            <!-- list of content -->
-            <form action="#" method="post" class="ui segment form">
-                <div class="inline fields">
-                    <div class="field">
-                        <input type="text" name="title" placeholder="Search...">
-                    </div>
-                    <div class="field">
-                        <div class="ui selection dropdown">
-                            <input type="hidden" name="topic">
-                            <i class="dropdown icon"></i>
-                            <div class="default text">Any topics</div>
-                            <div class="menu">
-                                <div class="item" data-value="1">Java</div>
-                                <div class="item" data-value="2">Python</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <button class="ui button">Go</button>
-                    </div>
-                </div>
-            </form>
-
+            <!-- list of tags -->
             <table class="ui celled padded table">
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Title</th>
-                        <th>Topic</th>
-                        <th>Update</th>
-                        <th>Manage</th>
+                        <th>Name</th>
+                        <th>Management</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>This is the title</td>
-                        <td>Java</td>
-                        <td>Sep 07 2019 10:10PM</td>
+                    <tr th:each="tag, iterator : ${page.content}">
+                        <td th:text="${iterator.count}">1</td>
+                        <td th:text="${tag.name}">tag</td>
                         <td>
-                            <a class="ui mini basic button">Edit</a>
-                            <a class="ui mini red basic button">Delete</a>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>This is the title</td>
-                        <td>Java</td>
-                        <td>Sep 07 2019 10:10PM</td>
-                        <td>
-                            <a class="ui mini basic button">Edit</a>
-                            <a class="ui mini red basic button">Delete</a>
-
+                            <a href="#" th:href="@{/admin/tags/{id}/edit(id=${tag.id})}" class="ui mini basic button">Edit</a>
+                            <a href="#" th:href="@{/admin/tags/{id}/delete(id=${tag.id})}" class="ui mini red basic button">Delete</a>
                         </td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="5">
-                            <a href="#" class="ui basic button">Create</a>
-                            <div class="ui right floated pagination mini menu">
-                                <a class="icon item">
+                        <th colspan="3">
+                            <a href="#" th:href="@{/admin/tags/create}" class="ui basic button">Create</a>
+                            <div class="ui right floated pagination mini menu" th:if="${page.totalPages}>1">
+                                <a th:href="@{/admin/tags(page=${page.number}-1)}" th:unless="${page.first}" class="icon item">
                                     <i class="left chevron icon"></i>
                                 </a>
-                                <a class="icon item">
+                                <a th:href="@{/admin/tags(page=${page.number}+1)}" th:unless="${page.last}" class="icon item">
                                     <i class="right chevron icon"></i>
                                 </a>
                             </div>

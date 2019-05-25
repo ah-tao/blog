@@ -13,10 +13,10 @@
     <nav th:fragment="nav(n)" class="ui attached segment m-padded-tb-min">
         <div class="ui container">
             <div class="ui secondary stackable menu">
-                <h2 class="ui header item">Blog</h2>
-                <a href="#" class="item menu-item m-mobile-hide" th:classappend="${n==1} ? 'active'">Post</a>
-                <a href="#" class="item menu-item m-mobile-hide" th:classappend="${n==2} ? 'active'">Topic</a>
-                <a href="#" class="item menu-item m-mobile-hide" th:classappend="${n==3} ? 'active'">Tag</a>
+                <h2 class="ui header item">Blog Management</h2>
+                <a href="#" class="item menu-item m-mobile-hide" th:href="@{/admin/posts}" th:classappend="${n==1} ? 'active'">Post</a>
+                <a href="#" class="item menu-item m-mobile-hide" th:href="@{/admin/topics}" th:classappend="${n==2} ? 'active'">Topic</a>
+                <a href="#" class="item menu-item m-mobile-hide" th:href="@{/admin/tags}" th:classappend="${n==3} ? 'active'">Tag</a>
                 <div class="right menu menu-item m-mobile-hide">
                     <div class="ui dropdown item">
                         <div class="text">

@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/admin")
-public class AdminController {
+public class PostController {
 
     @GetMapping("/posts")
     public String managePage() {
-        return "admin/manage";
+        return "admin/post_list";
     }
 }
