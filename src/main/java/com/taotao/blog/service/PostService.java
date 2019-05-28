@@ -14,6 +14,8 @@ public interface PostService {
 
     Page<Post> listPost(Pageable pageable, PostSearchCriteria criteria);
 
+    Page<Post> listPost(Pageable pageable);
+
     Post savePost(Post post);
 
     Post updatePost(Long id, Post post);

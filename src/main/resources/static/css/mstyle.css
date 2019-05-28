@@ -145,7 +145,11 @@
 }
 
 .m-color-gray {
-    color: #777777;
+    color: #777777 !important;
+}
+
+.m-color-black {
+    color: #111111 !important;
 }
 
 .m-shadow-small {

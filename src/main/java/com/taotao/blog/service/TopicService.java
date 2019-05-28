@@ -21,6 +21,8 @@ public interface TopicService {
 
     Page<Topic> listTopic(Pageable pageable);
 
+    List<Topic> listTopTopic(Integer size);
+
     List<Topic> listTopic();
 
     void deleteTopic(Long id);

@@ -45,6 +45,8 @@ public class Post {
     @Transient
     private String tagIds;
 
+    private String description;
+
     public Post() {
     }
 
@@ -136,6 +138,14 @@ public class Post {
         this.tagIds = tagIds;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "Post{" +
@@ -149,6 +159,8 @@ public class Post {
                 ", tags=" + tags +
                 ", user=" + user +
                 ", comments=" + comments +
+                ", tagIds='" + tagIds + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 

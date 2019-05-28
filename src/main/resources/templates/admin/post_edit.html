@@ -56,7 +56,10 @@
                 <input type="hidden" name="id" th:value="*{id}">
 
                 <div class="required field">
-                    <input type="text" name="title" placeholder="Title" th:value="*{title}">
+                    <div class="ui left labeled input">
+                        <label class="ui basic label">Title</label>
+                        <input type="text" name="title" placeholder="Title" th:value="*{title}">
+                    </div>
                 </div>
                 
                 <div class="required field">
@@ -92,6 +95,10 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="required field">
+                    <textarea name="description" th:text="*{description}" placeholder="Abstract..." maxlength="200"></textarea>
                 </div>
 
                 <div class="ui error message"></div>

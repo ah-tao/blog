@@ -25,5 +25,7 @@ public interface TagService {
 
     List<Tag> listTag(String ids);
 
+    List<Tag> listTopTag(Integer size);
+
     void deleteTag(Long id);
 }
