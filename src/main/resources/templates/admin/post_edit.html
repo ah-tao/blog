@@ -48,62 +48,33 @@
 
 
     <!-- main content -->
+    <br>
     <div class="m-padded-tb-l m-container">
         <div class="ui container">
-            <form action="#" method="post" class="ui form">
+            <form id="post-form" action="#" th:object="${post}" th:action="@{/admin/posts}" method="post" class="ui form">
+                <input type="hidden" name="status" th:value="*{status}">
+                <input type="hidden" name="id" th:value="*{id}">
+
                 <div class="required field">
-                    <input type="text" name="title" placeholder="Title">
+                    <input type="text" name="title" placeholder="Title" th:value="*{title}">
                 </div>
                 
-                <div class="field">
+                <div class="required field">
                     <div id="md-content" style="z-index: 1 !important;">
-                        <textarea placeholder="Content..." name="content" style="display: none;">[TOC]
-
-#### Disabled options
-
-- TeX (Based on KaTeX);
-- Emoji;
-- Task lists;
-- HTML tags decode;
-- Flowchart and Sequence Diagram;
-
-#### Editor.md directory
-
-    editor.md/
-            lib/
-            css/
-            scss/
-            tests/
-            fonts/
-            images/
-            plugins/
-            examples/
-            languages/
-            editormd.js
-            ...
-
-```html
-&lt;!-- English --&gt;
-&lt;script src="../dist/js/languages/en.js"&gt;&lt;/script&gt;
-
-&lt;!-- 繁體中文 --&gt;
-&lt;script src="../dist/js/languages/zh-tw.js"&gt;&lt;/script&gt;
-```
-                        </textarea>
+                        <textarea placeholder="Content..." name="content" th:text="*{content}" style="display: none;"></textarea>
                     </div>
                 </div>
                 
                 <div class="two fields">
-                    <div class="field">
+                    <div class="required field">
                         <div class="ui left labeled action input">
                             <label class="ui compact basic label">Topic</label>
-                            <div class="ui selection dropdown fluid search">
-                                <input type="hidden">
+                            <div class="ui selection fluid search dropdown">
+                                <input type="hidden" name="topic.id" th:value="*{topic}!=null ? *{topic.id}">
                                 <i class="dropdown icon"></i>
                                 <div class="default text">Topic</div>
                                 <div class="menu">
-                                    <div class="item" data-value="1">Java</div>
-                                    <div class="item" data-value="2">Python</div>
+                                    <div th:each="topic : ${topics}" class="item" data-value="1" th:data-value="${topic.id}" th:text="${topic.name}">some topic</div>
                                 </div>
                             </div>
                         </div>
@@ -111,13 +82,12 @@
                     <div class="field">
                         <div class="ui left labeled action input">
                             <label class="ui compact basic label">Tag</label>
-                            <div class="ui selection dropdown multiple fluid search">
-                                <input type="hidden">
+                            <div class="ui selection multiple fluid search dropdown">
+                                <input type="hidden" name="tagIds" th:value="*{tagIds}">
                                 <i class="dropdown icon"></i>
                                 <div class="default text">Tag</div>
                                 <div class="menu">
-                                    <div class="item" data-value="1">Spring</div>
-                                    <div class="item" data-value="2">Django</div>
+                                    <div th:each="tag : ${tags}" class="item" data-value="1" th:data-value="${tag.id}" th:text="${tag.name}">some tag</div>
                                 </div>
                             </div>
                         </div>
@@ -128,12 +98,14 @@
 
                 <div class="ui right aligned container">
                     <button type="button" class="ui basic button" onclick="window.history.go(-1)">Back</button>
-                    <button class="ui button">Save</button>
-                    <button class="ui button">Post</button>
+                    <button type="button" id="save-btn" class="ui button">Save</button>
+                    <button type="button" id="post-btn" class="ui button">Post</button>
                 </div>
             </form>
         </div>
     </div>
+    <br>
+    <br>
 
 
     <!-- footer -->
@@ -159,6 +131,17 @@
             on: 'hover'
         });
 
+        $('#save-btn').click(function () {
+            $('[name="status"]').val(false);
+            $('#post-form').submit();
+        });
+
+        $('#post-btn').click(function () {
+            $('[name="status"]').val(true);
+            $('#post-form').submit();
+        });
+
+        // check form submit
         $('.ui.form').form({
             fields: {
                 title: {
@@ -166,6 +149,20 @@
                     rules: [{
                         type: 'empty',
                         prompt: 'Please give a title'
+                    }]
+                },
+                content : {
+                    identifier: 'content',
+                    rules: [{
+                        type : 'empty',
+                        prompt: 'Please enter content'
+                    }]
+                },
+                topicId : {
+                    identifier: 'topic.id',
+                    rules: [{
+                        type : 'empty',
+                        prompt: 'Please select a topic'
                     }]
                 }
             }
@@ -179,7 +176,7 @@
                 width   : "100%",
                 height  : 640,
                 syncScrolling : "single",
-                path    : "../../static/libs/editormd/lib/"
+                path    : "/libs/editormd/lib/"
             });
 
         });

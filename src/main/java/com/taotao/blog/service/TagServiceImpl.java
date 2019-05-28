@@ -10,6 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Taotao Ma
  */
@@ -51,6 +54,23 @@ public class TagServiceImpl implements TagService {
     @Override
     public Page<Tag> listTag(Pageable pageable) {
         return repository.findAll(pageable);
+    }
+
+    @Override
+    public List<Tag> listTag() {
+        return repository.findAll();
+    }
+
+    @Override
+    public List<Tag> listTag(String ids) {
+        List<Long> list = new ArrayList<>();
+        if (ids != null && !"".equals(ids)) {
+            String[] idarray = ids.split(",");
+            for (String s : idarray) {
+                list.add(new Long(s));
+            }
+        }
+        return repository.findAllById(list);
     }
 
     @Transactional(rollbackFor = Exception.class)

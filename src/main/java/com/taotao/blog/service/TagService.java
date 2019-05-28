@@ -4,6 +4,8 @@ import com.taotao.blog.model.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 /**
  * @author Taotao Ma
  */
@@ -18,6 +20,10 @@ public interface TagService {
     Tag updateTag(Long id, Tag tag);
 
     Page<Tag> listTag(Pageable pageable);
+
+    List<Tag> listTag();
+
+    List<Tag> listTag(String ids);
 
     void deleteTag(Long id);
 }

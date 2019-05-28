@@ -21,7 +21,7 @@
                     <div class="ui dropdown item">
                         <div class="text">
                             <img src="../../static/images/Tao.jpg" th:src="@{/images/Tao.jpg}" alt="" class="ui avatar image">
-                            Ah-tao
+                            <span th:text="${session.user.name}">Ah-tao</span>
                             <i class="dropdown icon"></i>
                         </div>
 

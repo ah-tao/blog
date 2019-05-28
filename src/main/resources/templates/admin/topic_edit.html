@@ -48,7 +48,9 @@
 
 
     <!-- main content -->
-    <div class="m-padded-tb-l m-container">
+    <br>
+    <br>
+    <div class="m-padded-tb-l m-container-s">
         <div class="ui container">
             <form action="#" method="post" class="ui form" th:object="${topic}" th:action="*{id}==null ? @{/admin/topics} : @{/admin/topics/{id}(id=*{id})}">
                 <input type="hidden" name="id" th:value="*{id}">
@@ -75,6 +77,10 @@
             </form>
         </div>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
 
 
     <!-- footer -->

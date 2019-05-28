@@ -43,7 +43,6 @@
                 <a href="#" th:href="@{/admin/posts}" class="active item">List</a>
             </div>
         </div>
-
     </div>
 
 
@@ -58,7 +57,8 @@
             </div>
 
             <!-- list of content -->
-            <form action="#" method="post" class="ui segment form">
+            <form action="#" method="post" class="ui secondary segment form">
+                <input type="hidden" name="page" >
                 <div class="inline fields">
                     <div class="field">
                         <input type="text" name="title" placeholder="Search...">
@@ -69,69 +69,62 @@
                             <i class="dropdown icon"></i>
                             <div class="default text">Any topics</div>
                             <div class="menu">
-                                <div class="item" data-value="1">Java</div>
-                                <div class="item" data-value="2">Python</div>
+                                <div th:each="topic : ${topics}" class="item" data-value="1" th:data-value="${topic.id}" th:text="${topic.name}">some topic</div>
                             </div>
                         </div>
                     </div>
                     <div class="field">
-                        <button class="ui button">Go</button>
+                        <button type="button" id="search-btn" class="ui button">Go</button>
                     </div>
                 </div>
             </form>
 
-            <table class="ui celled padded table">
-                <thead>
+            <div id="table-container">
+                <table th:fragment="post_search_list" class="ui celled padded table">
+                    <thead>
                     <tr>
                         <th></th>
                         <th>Title</th>
                         <th>Topic</th>
-                        <th>Update</th>
-                        <th>Manage</th>
+                        <th>Status</th>
+                        <th>Update Time</th>
+                        <th>Management</th>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>This is the title</td>
-                        <td>Java</td>
-                        <td>Sep 07 2019 10:10PM</td>
+                    </thead>
+                    <tbody>
+                    <tr th:each="post, iteration : ${page.content}">
+                        <td th:text="${iteration.count}">1</td>
+                        <td th:text="${post.title}">This is the title</td>
+                        <td th:text="${post.topic.name}">Java</td>
+                        <td th:text="${post.status}? 'Published' : 'Draft'">Draft</td>
+                        <td th:text="${post.updated}">Sep 7 2014</td>
                         <td>
-                            <a class="ui mini basic button">Edit</a>
-                            <a class="ui mini red basic button">Delete</a>
-
+                            <a href="#" th:href="@{/admin/posts/{id}/edit(id=${post.id})}" class="ui mini basic button">Edit</a>
+                            <a href="#" th:href="@{/admin/posts/{id}/delete(id=${post.id})}" class="ui mini red basic button">Delete</a>
                         </td>
                     </tr>
+                    </tbody>
+                    <tfoot>
                     <tr>
-                        <td>2</td>
-                        <td>This is the title</td>
-                        <td>Java</td>
-                        <td>Sep 07 2019 10:10PM</td>
-                        <td>
-                            <a class="ui mini basic button">Edit</a>
-                            <a class="ui mini red basic button">Delete</a>
-
-                        </td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th colspan="5">
-                            <a href="#" class="ui basic button">Create</a>
-                            <div class="ui right floated pagination mini menu">
-                                <a class="icon item">
+                        <th colspan="6">
+                            <a href="#" th:href="@{/admin/posts/create}" class="ui basic button">Create</a>
+                            <div class="ui right floated pagination mini menu" th:if="${page.totalPages}>1">
+                                <a onclick="page(this)" th:attr="data-page=${page.number}-1" class="icon item" th:unless="${page.first}">
                                     <i class="left chevron icon"></i>
                                 </a>
-                                <a class="icon item">
+                                <a onclick="page(this)" th:attr="data-page=${page.number}+1" class="icon item" th:unless="${page.last}">
                                     <i class="right chevron icon"></i>
                                 </a>
                             </div>
                         </th>
                     </tr>
-                </tfoot>
-            </table>
+                    </tfoot>
+                </table>
+            </div>
         </div>
     </div>
+    <br>
+    <br>
 
 
     <!-- footer -->
@@ -153,7 +146,9 @@
         });
 
         $('.ui.dropdown').dropdown({
-            on: 'hover'
+            on: 'hover',
+            clearable: true,
+            placeholder: 'All Topics'
         });
 
         // Close message
@@ -162,6 +157,25 @@
                 .closest('.message')
                 .transition('fade');
         });
+
+        function loaddata() {
+            $("#table-container").load(/*[[@{/admin/posts/search}]]*/"/admin/posts/search",{
+                title : $("[name='title']").val(),
+                topic : $("[name='topic']").val(),
+                page : $("[name='page']").val()
+            });
+        }
+
+        function page(obj) {
+            $("[name='page']").val($(obj).data("page"));
+            loaddata();
+        }
+
+        $("#search-btn").click(function () {
+            $("[name='page']").val(0);
+            loaddata();
+        });
+
     </script>
 
 </body>

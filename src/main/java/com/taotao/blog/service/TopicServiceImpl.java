@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * @author Taotao Ma
  */
@@ -51,6 +53,11 @@ public class TopicServiceImpl implements TopicService {
     @Override
     public Page<Topic> listTopic(Pageable pageable) {
         return repository.findAll(pageable);
+    }
+
+    @Override
+    public List<Topic> listTopic() {
+        return repository.findAll();
     }
 
     @Transactional(rollbackFor = Exception.class)

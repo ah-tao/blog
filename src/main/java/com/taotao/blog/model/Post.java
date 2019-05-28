@@ -17,8 +17,11 @@ public class Post {
     private Long id;
 
     private String title;
+
+    @Basic(fetch = FetchType.LAZY)
+    @Lob
     private String content;
-    private String commentSwitch;
+
     private boolean status;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -39,6 +42,8 @@ public class Post {
     @OneToMany(mappedBy = "post")
     private List<Comment> comments = new ArrayList<>();
 
+    @Transient
+    private String tagIds;
 
     public Post() {
     }
@@ -65,14 +70,6 @@ public class Post {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public String getCommentSwitch() {
-        return commentSwitch;
-    }
-
-    public void setCommentSwitch(String commentSwitch) {
-        this.commentSwitch = commentSwitch;
     }
 
     public boolean isStatus() {
@@ -131,13 +128,20 @@ public class Post {
         this.comments = comments;
     }
 
+    public String getTagIds() {
+        return tagIds;
+    }
+
+    public void setTagIds(String tagIds) {
+        this.tagIds = tagIds;
+    }
+
     @Override
     public String toString() {
         return "Post{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
-                ", commentSwitch='" + commentSwitch + '\'' +
                 ", status=" + status +
                 ", created=" + created +
                 ", updated=" + updated +
@@ -146,5 +150,27 @@ public class Post {
                 ", user=" + user +
                 ", comments=" + comments +
                 '}';
+    }
+
+    public void init() {
+        this.tagIds = tagsToIds(this.tags);
+    }
+
+    private String tagsToIds(List<Tag> tags) {
+        if (tags.isEmpty()) {
+            return null;
+        } else {
+            StringBuilder builder = new StringBuilder();
+            boolean flag = false;
+            for (Tag tag : tags) {
+                if (flag) {
+                    builder.append(",");
+                } else {
+                    flag = true;
+                }
+                builder.append(tag.getId());
+            }
+            return builder.toString();
+        }
     }
 }

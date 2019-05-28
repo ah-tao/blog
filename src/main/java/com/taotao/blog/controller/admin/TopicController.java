@@ -28,7 +28,7 @@ public class TopicController {
     private TopicService topicService;
 
     @GetMapping("/topics")
-    public String topics(@PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC)Pageable pageable, Model model) {
+    public String topics(@PageableDefault(size = 6, sort = {"id"}, direction = Sort.Direction.DESC)Pageable pageable, Model model) {
         model.addAttribute("page", topicService.listTopic(pageable));
         return "admin/topic_list";
     }
