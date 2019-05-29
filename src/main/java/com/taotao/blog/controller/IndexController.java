@@ -10,13 +10,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import javax.persistence.Lob;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Taotao Ma
@@ -44,25 +42,52 @@ public class IndexController {
     }
 
     @GetMapping(value = "/post/{id}")
-    public String postPage(@PathVariable Long id, Model model) {
-        return "posts";
+    public String post(@PathVariable Long id, Model model) {
+        Post post = postService.getAndConvertPost(id);
+        model.addAttribute("post", post);
+        showLink(post, model);
+        return "post";
+    }
+
+    private void showLink(Post post, Model model) {
+        List<Post> postList = new ArrayList<>();
+        int count = 0;
+        for (Long postId : post.getRelatedPostIds()) {
+            if (count < 3) {
+                postList.add(postService.getPost(postId));
+                count++;
+            } else {
+                break;
+            }
+        }
+
+        model.addAttribute("postList", postList);
+        model.addAttribute("showLink", !postList.isEmpty());
+    }
+
+    @PostMapping("/search")
+    public String search(@PageableDefault(size = 6, sort = {"updated"}, direction = Sort.Direction.DESC)Pageable pageable,
+                         @RequestParam String query,
+                         Model model) {
+        model.addAttribute("page", postService.listPost(pageable, "%"+query+"%"));
+        model.addAttribute("query", query);
+        return "search";
     }
 
     @GetMapping(value = "/topics")
-    public String topicPage() {
+    public String topics() {
         return "topics";
     }
 
 
     @GetMapping(value = "/tags")
-    public String tagPage() {
+    public String tags() {
         return "tags";
     }
 
     @GetMapping(value = "/about")
-    public String aboutPage() {
+    public String about() {
         return "about";
     }
-
 
 }

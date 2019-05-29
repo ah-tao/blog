@@ -21,10 +21,12 @@
             <a href="#" class="item menu-item m-mobile-hide" th:classappend="${n==4} ? 'active'">Timeline</a>
             <a href="#" class="item menu-item m-mobile-hide" th:classappend="${n==5} ? 'active'">About</a>
             <div class="right item menu-item m-mobile-hide">
-                <div class="ui icon input">
-                    <input type="text" placeholder="Search...">
-                    <i class="search link icon"></i>
-                </div>
+                <form name="search" action="#" th:action="@{/search}" method="post" target="_blank">
+                    <div class="ui icon input">
+                        <input type="text" name="query" placeholder="Search..." th:value="${query}">
+                        <i onclick="document.forms['search'].submit()" class="search link icon"></i>
+                    </div>
+                </form>
             </div>
         </div>
         <a class="ui icon basic button menu toggle m-position-right-top m-mobile-show m-margin-lr-m" href="#">

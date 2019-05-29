@@ -3,6 +3,7 @@ package com.taotao.blog.service;
 import com.taotao.blog.dao.PostRepository;
 import com.taotao.blog.handler.NotFoundException;
 import com.taotao.blog.model.Post;
+import com.taotao.blog.util.MarkdownUtils;
 import com.taotao.blog.util.MyBeanUtils;
 import com.taotao.blog.util.PostSearchCriteria;
 import com.taotao.blog.util.PostSpecification;
@@ -30,6 +31,19 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public Post getAndConvertPost(Long id) {
+        Post post = repository.findById(id).orElse(null);
+        if (post == null) {
+            throw new NotFoundException("No such post exist");
+        }
+        Post p = new Post();
+        BeanUtils.copyProperties(post, p);
+        String convertedContent = MarkdownUtils.markdownToHtmlExtensions(post.getContent());
+        p.setContent(convertedContent);
+        return p;
+    }
+
+    @Override
     public Page<Post> listPost(Pageable pageable, PostSearchCriteria criteria) {
         PostSpecification postSpecification = new PostSpecification(criteria);
         return repository.findAll(postSpecification, pageable);
@@ -38,6 +52,11 @@ public class PostServiceImpl implements PostService {
     @Override
     public Page<Post> listPost(Pageable pageable) {
         return repository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Post> listPost(Pageable pageable, String query) {
+        return repository.findByQuery(pageable, query);
     }
 
     @Transactional

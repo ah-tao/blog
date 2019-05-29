@@ -44,15 +44,15 @@
                         <div class="ui horizontal link list">
                             <div class="item">
                                 <img src="../static/images/Tao.jpg" th:src="@{/images/Tao.jpg}" alt="" class="ui avatar image">
-                                <div class="content"><a href="#" class="header">Ah-tao</a></div>
+                                <div class="content"><a href="#" class="header" th:text="${post.user.name}">Ah-tao</a></div>
                             </div>
                             <div class="item">
-                                <i class="calendar icon"></i> Sept 7 2019
+                                <i class="calendar icon"></i> <span th:text="${#dates.format(post.updated, 'MM-dd-yyyy')}">09-07-2014</span>
                             </div>
                         </div>
                     </div>
                     <div class="five wide column right aligned">
-                        <a href="#" target="_blank" class="ui basic label m-padded-tb-xs m-text-thin">Java</a>
+                        <a href="#" target="_blank" class="ui basic label m-padded-tb-xs m-text-thin" th:text="${post.topic.name}">Java</a>
                     </div>
                 </div>
             </div>
@@ -60,16 +60,15 @@
             <!-- Content -->
             <div class="ui attached segment js-toc-content">
                 <br>
-                <h2  id="section-title" class="ui center aligned header">This is the title</h2>
-                <div id="content" class="m-padded-lr-responsive m-padded-tb-m">
+                <h2  id="section-title" class="ui center aligned header" th:text="${post.title}">This is the title</h2>
+                <br>
+                <div id="content" class="m-padded-lr-responsive m-padded-tb-m" th:utext="${post.content}">
                     <p>This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. </p>
                     <h3 id="section-1">This is section 1</h3>
                     <p>This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. </p>
                     <h3 id="section-2">This is section 2</h3>
                     <p>This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. </p>
                     <h3 id="section-3">This is section 3</h3>
-                    <p>This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. </p>
-                    <h3 id="section-4">This is section 4</h3>
                     <p>This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. </p>
                     <p>This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. </p>
                 </div>
@@ -84,11 +83,9 @@
             </div>
 
             <!-- Links -->
-            <div class="ui attached segment">
+            <div class="ui attached segment" th:if="${showLink}">
                 <div class="ui list m-padded-lr-responsive m-margin-tb-s">
-                    <a class="item m-margin-tb-xs">What is a FAQ?</a>
-                    <a class="item m-margin-tb-xs">Who is our user?</a>
-                    <a class="item m-margin-tb-xs">Where is our office located?</a>
+                    <a th:each="relatedPost : ${postList}" href="#" th:href="@{/post/{id}(id=${relatedPost.id})}" target="_blank" class="item m-margin-tb-xs" th:text="${relatedPost.title}">Another post link</a>
                 </div>
             </div>
 
@@ -244,7 +241,7 @@
             // Where to grab the headings to build the table of contents.
             contentSelector: '.js-toc-content',
             // Which headings to grab inside of the contentSelector element.
-            headingSelector: 'h1, h2, h3',
+            headingSelector: 'h2, h3, h4'
         });
 
         $('.menu.toggle').click(function () {

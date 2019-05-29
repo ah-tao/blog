@@ -12,9 +12,13 @@ public interface PostService {
 
     Post getPost(Long id);
 
+    Post getAndConvertPost(Long id);
+
     Page<Post> listPost(Pageable pageable, PostSearchCriteria criteria);
 
     Page<Post> listPost(Pageable pageable);
+
+    Page<Post> listPost(Pageable pageable, String query);
 
     Post savePost(Post post);
 

@@ -1,9 +1,7 @@
 package com.taotao.blog.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author Taotao Ma
@@ -184,5 +182,21 @@ public class Post {
             }
             return builder.toString();
         }
+    }
+
+    public List<Long> getRelatedPostIds() {
+        Set<Long> postIds = new HashSet<>();
+        for (Post post : topic.getPosts()) {
+            postIds.add(post.getId());
+        }
+        for (Tag tag : tags) {
+            for (Post post : tag.getPosts()) {
+                postIds.add(post.getId());
+            }
+        }
+        postIds.remove(id);
+        List<Long> ids = new ArrayList<>(postIds);
+        ids.sort(Collections.reverseOrder());
+        return ids;
     }
 }
