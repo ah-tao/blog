@@ -11,10 +11,15 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.criteria.*;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Taotao Ma
@@ -57,6 +62,29 @@ public class PostServiceImpl implements PostService {
     @Override
     public Page<Post> listPost(Pageable pageable, String query) {
         return repository.findByQuery(pageable, query);
+    }
+
+    @Override
+    public Page<Post> listPost(Pageable pageable, Long tagId) {
+        return repository.findAll((Specification<Post>) (root, query, builder) -> {
+            Join join = root.join("tags");
+            return builder.equal(join.get("id"), tagId);
+        }, pageable);
+    }
+
+    @Override
+    public Map<String, List<Post>> mapPostByYear() {
+        List<String> years = repository.findGroupYear();
+        Map<String, List<Post>> map = new HashMap<>();
+        for (String year : years) {
+            map.put(year, repository.findByYear(year));
+        }
+        return map;
+    }
+
+    @Override
+    public Long getPostCount() {
+        return repository.count();
     }
 
     @Transactional

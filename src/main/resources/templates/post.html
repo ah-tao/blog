@@ -75,9 +75,7 @@
                 <br>
                 <div class="m-padded-lr-responsive">
                     <div class="ui horizontal link list">
-                        <div class="ui label m-margin-tb-m m-margin-lr-s">Tag</div>
-                        <div class="ui label m-margin-tb-m m-margin-lr-s">Tag</div>
-                        <div class="ui label m-margin-tb-m m-margin-lr-s">Tag</div>
+                        <div class="ui label m-margin-tb-m m-margin-lr-s" th:each="tag : ${post.tags}" th:text="${tag.name}">Tag</div>
                     </div>
                 </div>
             </div>
@@ -180,7 +178,7 @@
 
 
     <!-- float menu -->
-    <div class="m-position-fixed m-position-right-bottom m-margin-lr-l m-margin-tb-l">
+    <div class="m-position-fixed m-position-right-bottom m-margin-lr-xl m-margin-tb-xl">
         <div class="ui vertical icon buttons ">
             <a href="#" class="ui icon button"><i class="chevron up icon"></i></a>
             <button type="button" class="ui button toc"><i class="bars icon"></i></button>
@@ -190,9 +188,7 @@
 
     <!-- TOC -->
     <div class="ui toc-container flowing popup transition hidden" style="width: 200px !important;">
-        <ol class="js-toc">
-
-        </ol>
+        <ol class="js-toc"></ol>
     </div>
 
 

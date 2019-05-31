@@ -60,12 +60,12 @@
                                     <div class="content"><a href="#" class="header" th:text="${post.user.name}">Ah-tao</a></div>
                                 </div>
                                 <div class="item">
-                                    <span th:text="${#dates.format(post.updated, 'MM-dd-yyyy')}">Sept 7 2019</span>
+                                    <span th:text="${#dates.format(post.updated, 'MMM dd yyyy')}">Sept 7 2019</span>
                                 </div>
                             </div>
                         </div>
                         <div class="five wide column right aligned">
-                            <a href="#" target="_blank" class="ui basic label m-padded-tb-xs m-text-thin" th:text="${post.topic.name}">Java</a>
+                            <a href="#" target="_blank" th:href="@{/topics/{id}(id=${post.topic.id})}" class="ui basic label m-padded-tb-xs m-text-thin" th:text="${post.topic.name}">Java</a>
                         </div>
                     </div>
                 </div>

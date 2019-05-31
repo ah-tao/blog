@@ -15,11 +15,11 @@
     <div class="ui container">
         <div class="ui secondary stackable menu">
             <h2 class="ui header item">Blog</h2>
-            <a href="#" class="item menu-item m-mobile-hide" th:classappend="${n==1} ? 'active'">Home</a>
-            <a href="#" class="item menu-item m-mobile-hide" th:classappend="${n==2} ? 'active'">Topic</a>
-            <a href="#" class="item menu-item m-mobile-hide" th:classappend="${n==3} ? 'active'">Tag</a>
-            <a href="#" class="item menu-item m-mobile-hide" th:classappend="${n==4} ? 'active'">Timeline</a>
-            <a href="#" class="item menu-item m-mobile-hide" th:classappend="${n==5} ? 'active'">About</a>
+            <a href="#" th:href="@{/}" class="item menu-item m-mobile-hide" th:classappend="${n==1} ? 'active'">Home</a>
+            <a href="#" th:href="@{/topics/-1}" class="item menu-item m-mobile-hide" th:classappend="${n==2} ? 'active'">Topic</a>
+            <a href="#" th:href="@{/tags/-1}" class="item menu-item m-mobile-hide" th:classappend="${n==3} ? 'active'">Tag</a>
+            <a href="#" th:href="@{/timeline}" class="item menu-item m-mobile-hide" th:classappend="${n==4} ? 'active'">Timeline</a>
+            <a href="#" th:href="@{/about}" class="item menu-item m-mobile-hide" th:classappend="${n==5} ? 'active'">About</a>
             <div class="right item menu-item m-mobile-hide">
                 <form name="search" action="#" th:action="@{/search}" method="post" target="_blank">
                     <div class="ui icon input">

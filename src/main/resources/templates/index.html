@@ -57,19 +57,19 @@
                             <h3 class="ui header"><a href="#" th:href="@{/post/{id}(id=${post.id})}" target="_blank" th:text="${post.title}">This is the title</a></h3>
                             <p th:text="|${post.description} ...|">This is the description</p>
                             <div class="ui grid">
-                                <div class="eleven wide column">
+                                <div class="twelve wide column">
                                     <div class="ui horizontal link list">
                                         <div class="item">
                                             <img src="../static/images/Tao.jpg" th:src="@{/images/Tao.jpg}" alt="" class="ui avatar image">
                                             <div class="content"><a href="#" class="header" th:text="${post.user.name}">Ah-tao</a></div>
                                         </div>
                                         <div class="item">
-                                            <span th:text="${#dates.format(post.updated, 'MM-dd-yyyy')}">Sept 7 2019</span>
+                                            <span th:text="${#dates.format(post.updated, 'MMM dd yyyy')}">Sept 7 2019</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="five wide column right aligned">
-                                    <a href="#" target="_blank" class="ui basic label m-padded-tb-xs m-text-thin" th:text="${post.topic.name}">Java</a>
+                                <div class="four wide column right aligned">
+                                    <a href="#" target="_blank" th:href="@{/topics/{id}(id=${post.topic.id})}" class="ui basic label m-padded-tb-xs m-text-thin" th:text="${post.topic.name}">Java</a>
                                 </div>
                             </div>
                         </div>
@@ -88,8 +88,7 @@
                     </div>
 
                 </div>
-
-
+                <!-- middle padding -->
                 <div class="one wide column"></div>
                 <!-- right side -->
                 <div class="five wide column">
@@ -99,7 +98,7 @@
                             <div class="ui two column grid">
                                 <div class="column">Topic</div>
                                 <div class="right aligned column">
-                                    <a href="#" target="_blank"><i class="icon ellipsis horizontal m-color-gray"></i></a>
+                                    <a href="#" th:href="@{/topics/-1}" target="_blank"><i class="icon ellipsis horizontal m-color-gray"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +117,7 @@
                             <div class="ui two column grid">
                                 <div class="column">Tag</div>
                                 <div class="right aligned column">
-                                    <a href="#" target="_blank"><i class="icon ellipsis horizontal m-color-gray"></i></a>
+                                    <a href="#" th:href="@{/topics/-1}" target="_blank"><i class="icon ellipsis horizontal m-color-gray"></i></a>
                                 </div>
                             </div>
                         </div>
