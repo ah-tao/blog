@@ -44,15 +44,15 @@
                         <div class="ui horizontal link list">
                             <div class="item">
                                 <img src="../static/images/Tao.jpg" th:src="@{/images/Tao.jpg}" alt="" class="ui avatar image">
-                                <div class="content"><a href="#" class="header" th:text="${post.user.name}">Ah-tao</a></div>
+                                <div class="content"><a href="#" target="_blank" class="header" th:href="@{/about}" th:text="${post.user.name}">Ah-tao</a></div>
                             </div>
                             <div class="item">
-                                <i class="calendar icon"></i> <span th:text="${#dates.format(post.updated, 'MM-dd-yyyy')}">09-07-2014</span>
+                                <i class="calendar icon"></i><span th:text="${#dates.format(post.updated, 'MM-dd-yyyy')}">09-07-2014</span>
                             </div>
                         </div>
                     </div>
                     <div class="five wide column right aligned">
-                        <a href="#" target="_blank" class="ui basic label m-padded-tb-xs m-text-thin" th:text="${post.topic.name}">Java</a>
+                        <a href="#" target="_blank" class="ui basic label m-padded-tb-xs m-text-thin" th:href="@{/topics/{id}(id=${post.topic.id})}" th:text="${post.topic.name}">Java</a>
                     </div>
                 </div>
             </div>
@@ -60,22 +60,15 @@
             <!-- Content -->
             <div class="ui attached segment js-toc-content">
                 <br>
-                <h2  id="section-title" class="ui center aligned header" th:text="${post.title}">This is the title</h2>
+                <h2  id="section-title" class="ui center aligned header" th:text="${post.title}">title</h2>
                 <br>
-                <div id="content" class="m-padded-lr-responsive m-padded-tb-m" th:utext="${post.content}">
-                    <p>This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. </p>
-                    <h3 id="section-1">This is section 1</h3>
-                    <p>This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. </p>
-                    <h3 id="section-2">This is section 2</h3>
-                    <p>This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. </p>
-                    <h3 id="section-3">This is section 3</h3>
-                    <p>This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. </p>
-                    <p>This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. </p>
-                </div>
+                <div id="content" class="m-padded-lr-responsive m-padded-tb-m" th:utext="${post.content}">content</div>
                 <br>
                 <div class="m-padded-lr-responsive">
                     <div class="ui horizontal link list">
-                        <div class="ui label m-margin-tb-m m-margin-lr-s" th:each="tag : ${post.tags}" th:text="${tag.name}">Tag</div>
+                        <div class="ui label m-margin-tb-m m-margin-lr-s" th:each="tag : ${post.tags}">
+                            <a href="#" target="_blank" th:href="@{/tags/{id}(id=${tag.id})}" th:text="${tag.name}">tag</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -88,91 +81,75 @@
             </div>
 
             <!-- Comment-->
-            <div id="comment-container" class="ui bottom attached segment">
-                <div class="ui comments m-padded-lr-responsive m-margin-tb-s">
-                    <h3 class="ui dividing header">Comments</h3>
-                    <div class="comment">
-                        <div class="content">
-                            <a class="author">Matt</a>
-                            <div class="metadata">
-                                <span class="date">Today at 5:42PM</span>
-                            </div>
-                            <div class="text">
-                                How artistic!
-                            </div>
-                            <div class="actions">
-                                <a class="reply">Reply</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment">
-                        <div class="content">
-                            <a class="author">Elliot Fu</a>
-                            <div class="metadata">
-                                <span class="date">Yesterday at 12:30AM</span>
-                            </div>
-                            <div class="text">
-                                <p>This has been very useful for my research. Thanks as well!</p>
-                            </div>
-                            <div class="actions">
-                                <a class="reply">Reply</a>
-                            </div>
-                        </div>
-                        <div class="comments">
-                            <div class="comment">
+            <div class="ui bottom attached segment">
+                <!-- view of comments -->
+                <div id="comment-container" class="m-padded-lr-responsive m-margin-tb-s">
+                    <div th:fragment="commentList">
+                        <div class="ui comments" style="max-width: 100%">
+                            <h3 class="ui dividing header">Comments</h3>
+                            <div class="comment" th:each="comment : ${comments}">
                                 <div class="content">
-                                    <a class="author">Jenny Hess</a>
+                                    <a class="author">
+                                        <span th:text="${comment.username}">username</span>
+                                        <div class="ui mini basic label" th:if="${comment.fromAdmin}">Author</div>
+                                    </a>
                                     <div class="metadata">
-                                        <span class="date">Just now</span>
+                                        <span class="date" th:text="${#dates.format(comment.created, 'MMM dd yy - HH:mm')}">Yesterday at 12:30AM</span>
                                     </div>
-                                    <div class="text">
-                                        Elliot you are always so right :)
-                                    </div>
+                                    <div class="text" th:text="${comment.content}">content</div>
                                     <div class="actions">
-                                        <a class="reply">Reply</a>
+                                        <a class="reply" data-commentid="1" data-commentusername="name" th:attr="data-commentid=${comment.id}, data-commentusername=${comment.username}" onclick="reply(this)">Reply</a>
+                                    </div>
+                                </div>
+                                <div class="comments" th:if="${#arrays.length(comment.replyComments)}>0">
+                                    <div class="comment" th:each="reply : ${comment.replyComments}">
+                                        <div class="content">
+                                            <a class="author">
+                                                <span th:text="${reply.username}">username</span>
+                                                <div class="ui mini basic label" th:if="${reply.fromAdmin}">Author</div>
+                                                &nbsp;<span th:text="|@ ${reply.originalComment.username}|">@ 小白</span>
+                                            </a>
+                                            <div class="metadata">
+                                                <span class="date" th:text="${#dates.format(reply.created, 'MMM dd yy - HH:mm')}">Just now</span>
+                                            </div>
+                                            <div class="text" th:text="${reply.content}">
+                                                Elliot you are always so right :)
+                                            </div>
+                                            <div class="actions">
+                                                <a class="reply" data-commentid="1" data-commentusername="name" th:attr="data-commentid=${comment.id}, data-commentusername=${comment.username}" onclick="reply(this)">Reply</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="comment">
-                        <div class="content">
-                            <a class="author">Joe Henderson</a>
-                            <div class="metadata">
-                                <span class="date">5 days ago</span>
-                            </div>
-                            <div class="text">
-                                Dude, this is awesome. Thanks so much
-                            </div>
-                            <div class="actions">
-                                <a class="reply">Reply</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ui hidden divider"></div>
                 </div>
-
-                <form class="ui reply form m-padded-lr-responsive m-margin-tb-s">
+                <!-- form for comments and replies -->
+                <div id="comment-form" class="ui form m-padded-lr-responsive m-margin-tb-s">
+                    <input type="hidden" name="post.id" th:value="${post.id}">
+                    <input type="hidden" name="originalComment.id" value="-1">
                     <div class="field">
-                        <textarea placeholder="Comments..."></textarea>
+                        <textarea name="content" placeholder="Comments..."></textarea>
                     </div>
                     <div class="fields">
                         <div class="field m-mobile-wide m-margin-b-xs">
                             <div class="ui input">
-                                <input type="text" placeholder="Name">
+                                <input type="text" name="username" placeholder="Name" th:value="${session.user}!=null ? ${session.user.username}">
                             </div>
                         </div>
                         <div class="field m-mobile-wide m-margin-b-xs">
                             <div class="ui input">
-                                <input type="text" placeholder="Email">
+                                <input type="text" name="email" placeholder="Email" th:value="${session.user}!=null ? ${session.user.email}">
                             </div>
                         </div>
                         <div class="field m-mobile-wide m-margin-b-xs">
-                            <div class="ui button m-mobile-wide">Reply</div>
+                            <button id="commentpost-btn" type="button" class="ui button m-mobile-wide">Reply</button>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
+
         </div>
     </div>
 
@@ -230,7 +207,7 @@
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
     <script src="../static/libs/tocbot/tocbot.min.js" th:src="@{/libs/tocbot/tocbot.min.js}"></script>
 
-    <script>
+    <script th:inline="javascript">
         tocbot.init({
             // Where to render the table of contents.
             tocSelector: '.js-toc',
@@ -249,6 +226,71 @@
             on: 'click',
             position: 'left center'
         });
+
+        $('.ui.form').form({
+            fields: {
+                content: {
+                    identifier: 'content',
+                    rules: [{
+                        type: 'empty',
+                        prompt: 'Please enter comment'
+                    }]
+                },
+                username: {
+                    identifier: 'username',
+                    rules: [{
+                        type: 'empty',
+                        prompt: 'Please enter your name'
+                    }]
+                },
+                email: {
+                    identifier: 'email',
+                    rules: [{
+                        type: 'email',
+                        prompt: 'Please enter your email'
+                    }]
+                }
+            }
+        });
+
+        $(function () {
+            $("#comment-container").load(/*[[@{/comments/{id}(id=${post.id})}]]*/"/comments/24");
+        });
+
+        $('#commentpost-btn').click(function () {
+            console.log('clicked');
+            var vld = $('.ui.form').form('validate form');
+            if (vld) {
+                console.log('Form Validated');
+                postDate();
+            } else {
+                console.log('Form failed to validate');
+            }
+        });
+
+        function postDate() {
+            $("#comment-container").load(/*[[@{/comments}]]*/"", {
+                "originalComment.id" : $("[name='originalComment.id']").val(),
+                "post.id" : $("[name='post.id']").val(),
+                "username" : $("[name='username']").val(),
+                "email" : $("[name='email']").val(),
+                "content" : $("[name='content']").val()
+            }, function (responseTxt, statusTxt, xhr) {
+                clearContent();
+            });
+        }
+
+        function clearContent() {
+            $("[name='originalComment.id']").val(-1);
+            $("[name='content']").val('').attr("placeholder", "Comments...");
+        }
+
+        function reply(obj) {
+            var commentId = $(obj).data('commentid');
+            var commentUsername = $(obj).data('commentusername');
+            $("[name='originalComment.id']").val(commentId);
+            $("[name='content']").attr("placeholder", "@"+commentUsername).focus();
+        }
     </script>
 
 </body>

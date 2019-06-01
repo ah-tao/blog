@@ -1,8 +1,7 @@
 package com.taotao.blog.controller;
 
-import com.taotao.blog.model.Post;
-import com.taotao.blog.model.Tag;
-import com.taotao.blog.model.Topic;
+import com.taotao.blog.model.*;
+import com.taotao.blog.service.CommentService;
 import com.taotao.blog.service.PostService;
 import com.taotao.blog.service.TagService;
 import com.taotao.blog.service.TopicService;
@@ -15,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +32,9 @@ public class IndexController {
 
     @Autowired
     private TagService tagService;
+
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping("/")
     public String index(@PageableDefault(size = 6, sort = {"updated"}, direction = Sort.Direction.DESC) Pageable pageable,
@@ -91,7 +94,6 @@ public class IndexController {
         return "topics";
     }
 
-
     @GetMapping("/tags/{id}")
     public String tags(@PageableDefault(size = 6, sort = {"id"}, direction = Sort.Direction.DESC)Pageable pageable,
                        @PathVariable Long id,
@@ -116,6 +118,25 @@ public class IndexController {
     @GetMapping("/about")
     public String about() {
         return "about";
+    }
+
+    @GetMapping("/comments/{postId}")
+    public String comments(@PathVariable Long postId, Model model) {
+        model.addAttribute("post", postService.getPost(postId));
+        model.addAttribute("comments", commentService.listCommentByPostId(postId));
+        return "post :: commentList";
+    }
+
+    @PostMapping("/comments")
+    public String postComment(Comment comment, HttpSession session) {
+        Long postId = comment.getPost().getId();
+        comment.setPost(postService.getPost(postId));
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            comment.setFromAdmin(true);
+        }
+        commentService.saveComment(comment);
+        return "redirect:/comments/" + postId;
     }
 
 }

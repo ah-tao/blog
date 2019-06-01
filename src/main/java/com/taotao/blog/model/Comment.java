@@ -26,11 +26,13 @@ public class Comment {
     @ManyToOne
     private Post post;
 
-    @OneToMany(mappedBy = "parentComment")
-    private List<Comment> childComments = new ArrayList<>();
+    @OneToMany(mappedBy = "originalComment")
+    private List<Comment> replyComments = new ArrayList<>();
 
     @ManyToOne
-    private Comment parentComment;
+    private Comment originalComment;
+
+    private boolean fromAdmin;
 
     public Comment() {
     }
@@ -83,20 +85,28 @@ public class Comment {
         this.post = post;
     }
 
-    public List<Comment> getChildComments() {
-        return childComments;
+    public List<Comment> getReplyComments() {
+        return replyComments;
     }
 
-    public void setChildComments(List<Comment> childComments) {
-        this.childComments = childComments;
+    public void setReplyComments(List<Comment> replyComments) {
+        this.replyComments = replyComments;
     }
 
-    public Comment getParentComment() {
-        return parentComment;
+    public Comment getOriginalComment() {
+        return originalComment;
     }
 
-    public void setParentComment(Comment parentComment) {
-        this.parentComment = parentComment;
+    public void setOriginalComment(Comment originalComment) {
+        this.originalComment = originalComment;
+    }
+
+    public boolean isFromAdmin() {
+        return fromAdmin;
+    }
+
+    public void setFromAdmin(boolean fromAdmin) {
+        this.fromAdmin = fromAdmin;
     }
 
     @Override
@@ -108,8 +118,9 @@ public class Comment {
                 ", content='" + content + '\'' +
                 ", created=" + created +
                 ", post=" + post +
-                ", childComments=" + childComments +
-                ", parentComment=" + parentComment +
+                ", replyComments=" + replyComments +
+                ", originalComment=" + originalComment +
+                ", fromAdmin=" + fromAdmin +
                 '}';
     }
 }
