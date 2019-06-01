@@ -47,7 +47,7 @@
                                 <div class="content"><a href="#" target="_blank" class="header" th:href="@{/about}" th:text="${post.user.name}">Ah-tao</a></div>
                             </div>
                             <div class="item">
-                                <i class="calendar icon"></i><span th:text="${#dates.format(post.updated, 'MM-dd-yyyy')}">09-07-2014</span>
+                                <span th:text="${#dates.format(post.updated, 'MMM dd yyyy')}">09-07-2014</span>
                             </div>
                         </div>
                     </div>
@@ -135,7 +135,7 @@
                     <div class="fields">
                         <div class="field m-mobile-wide m-margin-b-xs">
                             <div class="ui input">
-                                <input type="text" name="username" placeholder="Name" th:value="${session.user}!=null ? ${session.user.username}">
+                                <input type="text" name="username" placeholder="Name" th:value="${session.user}!=null ? ${session.user.name}">
                             </div>
                         </div>
                         <div class="field m-mobile-wide m-margin-b-xs">

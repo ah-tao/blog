@@ -17,7 +17,7 @@ public class Tag {
 
     private String name;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "tags")
     private List<Post> posts = new ArrayList<>();
 
     public Tag() {

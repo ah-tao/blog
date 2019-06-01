@@ -53,7 +53,7 @@
                 <div class="ui fluid vertical menu">
                     <a href="#" th:href="@{/post/{id}(id=${post.id})}" target="_blank" class="item" th:each="post : ${item.value}">
                         <span th:text="${post.title}">title</span>
-                        <div class="ui basic label" th:text="${#dates.format(post.updated, 'MMM dd')}">Sep 07</div>
+                        <div class="ui label" th:text="${#dates.format(post.updated, 'MMM dd')}">Sep 07</div>
                     </a>
                 </div>
                 <br>

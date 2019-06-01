@@ -47,14 +47,14 @@
                     </div>
                 </div>
             </div>
-            <!-- Topic -->
+            <!-- Tags -->
             <div class="ui bottom attached segment">
                 <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" class="ui basic label large m-margin-tb-xs" th:classappend="${tag.id==activeTag} ? 'black'" th:each="tag : ${tags}">
                     <span th:text="${tag.name}">tag</span>
                     <div class="detail" th:text="${#arrays.length(tag.posts)}">3</div>
                 </a>
             </div>
-            <!-- list of posts in a topic -->
+            <!-- list of posts in a tag -->
             <div class="ui top attached segment m-padded-tb-m m-padded-lr-responsive">
                 <div class="ui vertical segment m-padded-tb-m" th:each="post : ${page.content}">
                     <h3 class="ui header"><a href="#" th:href="@{/post/{id}(id=${post.id})}" target="_blank" th:text="${post.title}">This is the title</a></h3>

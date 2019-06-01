@@ -61,7 +61,7 @@
                                     <div class="ui horizontal link list">
                                         <div class="item">
                                             <img src="../static/images/Tao.jpg" th:src="@{/images/Tao.jpg}" alt="" class="ui avatar image">
-                                            <div class="content"><a href="#" class="header" th:text="${post.user.name}">Ah-tao</a></div>
+                                            <div class="content"><a href="#" class="header" th:text="${post.user.name}" th:href="@{/about}">Ah-tao</a></div>
                                         </div>
                                         <div class="item">
                                             <span th:text="${#dates.format(post.updated, 'MMM dd yyyy')}">Sept 7 2019</span>
@@ -104,7 +104,7 @@
                         </div>
                         <div class="ui segment">
                             <div class="ui fluid vertical menu">
-                                <a href="#" class="item" th:each="topic : ${topics}">
+                                <a href="#" class="item" th:each="topic : ${topics}" th:href="@{/topics/{id}(id=${topic.id})}">
                                     <span th:text="${topic.name}">Topic</span>
                                     <div class="ui label m-opacity" th:text="${#arrays.length(topic.posts)}">1</div>
                                 </a>
@@ -117,12 +117,12 @@
                             <div class="ui two column grid">
                                 <div class="column">Tag</div>
                                 <div class="right aligned column">
-                                    <a href="#" th:href="@{/topics/-1}" target="_blank"><i class="icon ellipsis horizontal m-color-gray"></i></a>
+                                    <a href="#" th:href="@{/tags/-1}" target="_blank"><i class="icon ellipsis horizontal m-color-gray"></i></a>
                                 </div>
                             </div>
                         </div>
                         <div class="ui segment">
-                            <a href="#" target="_blank" class="ui label m-margin-tb-xs" th:each="tag : ${tags}">
+                            <a href="#" target="_blank" class="ui label m-margin-tb-xs" th:each="tag : ${tags}" th:href="@{/tags/{id}(id=${tag.id})}">
                                 <span th:text="${tag.name}">Tag</span>
                                 <div class="detail" th:text="${#arrays.length(tag.posts)}">1</div>
                             </a>
